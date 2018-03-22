@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 /**
  * @Author: GuoFangshi
  * @Date: 2018/3/22 14:24
+ *
+ * Predicate初步学习实践
  */
 public class PredicateTest {
 
