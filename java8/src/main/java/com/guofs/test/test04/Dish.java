@@ -50,7 +50,7 @@ public class Dish {
     public enum Type { MEAT, FISH, OTHER }
 
     public static void fillList(List<Dish> dishes) {
-        dishes = Arrays.asList(
+        List<Dish> temp = Arrays.asList(
                 new Dish("pork", false, 800, Type.MEAT),
                 new Dish("beef", false, 700, Type.MEAT),
                 new Dish("chicken", false, 400, Type.MEAT),
@@ -61,6 +61,7 @@ public class Dish {
                 new Dish("prawns", false, 300, Type.FISH),
                 new Dish("salmon", false, 450, Type.FISH)
         );
+        dishes.addAll(temp);
     }
 
 }
