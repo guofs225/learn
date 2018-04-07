@@ -4,10 +4,14 @@ import com.guofs.test.test05.transaction.Trader;
 import com.guofs.test.test05.transaction.Transaction;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * @Author: GuoFangshi
@@ -34,10 +38,52 @@ public class TestMy01 {
                 .sorted((transaction0, transaction1) -> (transaction0.getValue() - transaction1.getValue()))
                 .collect(toList());
         System.out.println("practice01: " + practice01);
-        List<String> practice02 = transactions.stream()
+        Set<String> practice02 = transactions.stream()
                 .map(transaction -> transaction.getTrader().getCity())
+                .collect(toSet());
+        System.out.println("practice02: " + practice02);
+        List<Trader> practice03 = transactions.stream()
+                .filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity()))
+                .map(Transaction::getTrader)
+                .sorted(Comparator.comparing(Trader::getName))
                 .distinct()
                 .collect(toList());
-        System.out.println("practice02: " + practice02);
+        System.out.println("practice03: " + practice03);
+        String practice04 = transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .collect(joining());
+        System.out.println("practice04: " + practice04);
+
+        Trader practice05 = transactions.stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> "Milan".equals(trader.getCity()))
+                .findAny()
+                .orElse(new Trader("no people", "Milan"));
+        System.out.println(practice05);
+
+        transactions.stream()
+                .filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity()))
+                .map(Transaction::getValue)
+                .forEach(System.out::println);
+        System.out.println();
+        transactions.stream()
+                .mapToInt(Transaction::getValue)
+                .max()
+                .ifPresent(System.out::println);
+
+        System.out.println();
+
+        transactions.stream()
+                .mapToInt(Transaction::getValue)
+                .min()
+                .ifPresent(System.out::println);
+
+        System.out.println();
+
+        transactions.stream()
+                .min(Comparator.comparing(Transaction::getValue))
+                .ifPresent(System.out::println);
     }
 }
