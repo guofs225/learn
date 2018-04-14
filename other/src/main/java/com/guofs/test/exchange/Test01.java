@@ -11,9 +11,5 @@ import microsoft.exchange.webservices.data.credential.WebCredentials;
  */
 public class Test01 {
     public static void main(String[] args) throws Exception {
-//        ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP2);
-//        ExchangeCredentials credentials = new WebCredentials("guofs@weichai.com", "GuoFangShi225");
-//        service.setCredentials(credentials);
-//        service.autodiscoverUrl("guofs@weichai.com");
     }
 }
